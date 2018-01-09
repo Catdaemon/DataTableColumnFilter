@@ -12,8 +12,6 @@
 
         let regex = values.length > 0 ? values.join("|") : "valueunlikelytooccur";
         column.search(regex, true, false, true).draw();
-
-        console.log(regex);
     }
 
     $.fn.dataTableAdvFilter = function(options) {
@@ -94,7 +92,10 @@
 
                 // Hide checkboxes not matching the entered string
                 valueFilters.find("label").each(function() {
-                    if ($(this).text().toLowerCase().includes(boxval) || boxval == "")
+                    if ($(this).text() == "Select All")
+                        return;
+
+                    if ($(this).text().toLowerCase().includes(boxval.toLowerCase()) || boxval == "")
                     {
                         $(this).show();
                     } else {
