@@ -2,15 +2,16 @@
     // Search column for selected checkbox values
     function _columnSearchMulti(column, parent)
     {
+        let blank = "valueunlikelytooccur";
         let values = [];
         parent.find("input[type='checkbox']:checked").each(function() {
             var val = $(this).data("value");
             if (val == undefined)
                 return;
-            values.push(val);
+            values.push(val == "" ? "^$" : val);
         });
 
-        let regex = values.length > 0 ? values.join("|") : "valueunlikelytooccur";
+        let regex = values.length > 0 ? values.join("|") : blank;
         column.search(regex, true, false, true).draw();
     }
 
@@ -39,7 +40,7 @@
 
             // Create filter elements
             let filterContainer = $("<div class='dtFilters'>");
-            let filterButton = $("<a class='dtFilter'><i class='glyphicon glyphicon-filter'></i></a>");
+            let filterButton = $("<a class='dtFilter'></a>");
             let valueFilters = $("<ul></ul>");
 
             // Text search box
