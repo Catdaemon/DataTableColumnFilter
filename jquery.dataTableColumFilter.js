@@ -8,11 +8,15 @@
             var val = $(this).data("value");
             if (val == undefined)
                 return;
-            values.push(val == "" ? "^$" : val);
+
+            // Push either blank or regex escaped value
+            values.push(val == "" ? "^$" : val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
         });
 
         let regex = values.length > 0 ? values.join("|") : blank;
         column.search(regex, true, false, true).draw();
+
+        console.log(regex);
     }
 
     $.fn.dataTableAdvFilter = function(options) {
@@ -96,7 +100,7 @@
                     if ($(this).text() == "Select All")
                         return;
 
-                    if ($(this).text().toLowerCase().includes(boxval.toLowerCase()) || boxval == "")
+                    if ($(this).text().toLowerCase().indexOf(boxval.toLowerCase()) !== -1 || boxval == "")
                     {
                         $(this).show();
                     } else {
