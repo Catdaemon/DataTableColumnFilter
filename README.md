@@ -1,8 +1,9 @@
 # DataTableColumnFilter
-A simple but powerful column filtering plugin for DataTables
+A simple but powerful column filtering plugin for DataTables. The built in search is great, but I wanted this per-column but without spamming inputs everywhere in the footer etc. Also, being able to filter out specific things is nice. Other plugins exist to do this but are quite heavy and I wanted just this functionality.
 
-# Why
-Because the built in search is great, but I wanted this per-column but without spamming inputs everywhere in the footer etc. Also, being able to filter out specific things is nice.
+# Prerequisites
+- jQuery
+- jQuery DataTables
 
 # What does it look like?
 Something like this:
@@ -44,9 +45,19 @@ div.dtFilters li.heading {
 }
 a.dtFilter
 {
-    color: #ddd;
+    color: #777;
     position: absolute;
-    right: 8px;
-    bottom: 7px;
+    right: 2px;
+    bottom: 8px;
+    width:16px;
+    height:16px;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+a.dtFilter:before
+{
+    content: "\e138";
 }
 ```
