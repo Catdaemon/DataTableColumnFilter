@@ -15,8 +15,6 @@
 
         let regex = values.length > 0 ? values.join("|") : blank;
         column.search(regex, true, false, true).draw();
-
-        console.log(regex);
     }
 
     $.fn.dataTableAdvFilter = function(options) {
